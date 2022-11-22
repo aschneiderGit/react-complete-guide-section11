@@ -6,8 +6,12 @@ import style from './Cart.module.css';
 
 function Cart(props) {
 	const cartCtx = useContext(CartContext);
-	const cartItemRemoveHandler = (id) => {};
-	const cartItemAddHandler = (item) => {};
+	const cartItemRemoveHandler = (id) => {
+		cartCtx.removeItem(id);
+	};
+	const cartItemAddHandler = (item) => {
+		cartCtx.addItem({...item, amount: 1});
+	};
 	const totalAmount = `$${cartCtx.totalAmount.toFixed(2)}`;
 	const hasItem = cartCtx.items.length > 0;
 	const cartItems = cartCtx.items.map((item) => (
@@ -17,7 +21,7 @@ function Cart(props) {
 			price={item.price}
 			amount={item.amount}
 			onRemove={cartItemRemoveHandler.bind(null, item.id)}
-			onAdd={cartItemAddHandler.bind(null, item.id)}
+			onAdd={cartItemAddHandler.bind(null, item)}
 		/>
 	));
 

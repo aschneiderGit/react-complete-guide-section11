@@ -7,14 +7,16 @@ function Cart(props) {
 	);
 	console.log(cartItems);
 	return (
-		<Modal>
+		<Modal onBackDropClick={props.onClose}>
 			<ul className={style['cart-items']}>{cartItems}</ul>
 			<div className={style.total}>
 				<span>Total Amount</span>
 				<span> 23.34</span>
 			</div>
 			<div className={style.actions}>
-				<button className={style['button--alt']}>Close</button>
+				<button className={style['button--alt']} onClick={props.onClose}>
+					Close
+				</button>
 				<button className={style.button}>Order</button>
 			</div>
 		</Modal>
